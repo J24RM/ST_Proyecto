@@ -32,7 +32,9 @@ state = {'score': 0}
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
+# Posicion inicial del jugador
 pacman = vector(-40, -80)
+# Posicion inicial y velocidad inicial de los fantasmas
 ghosts = [
     [vector(-180, 160), vector(20, 0)],
     [vector(-180, -160), vector(0, 20)],
@@ -143,11 +145,13 @@ def move():
     up()
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
+    # Color y tamanio del pacman
 
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
         else:
+            # Velocidad de los fantasmas
             options = [
                 vector(20, 0),
                 vector(-20, 0),
@@ -185,6 +189,7 @@ writer.goto(160, 160)
 writer.color('white')
 writer.write(state['score'])
 listen()
+# Movimientos del jugador
 onkey(lambda: change(5, 0), 'Right')
 onkey(lambda: change(-5, 0), 'Left')
 onkey(lambda: change(0, 5), 'Up')
